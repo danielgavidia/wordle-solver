@@ -4,6 +4,7 @@ import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
 import DataManipulation from "./components/DataManipulation";
 import DataManipulation4 from "./components/DataManipulation4";
+import DataManipulation5 from "./components/DataManipulation5";
 
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
         <DataManipulation4 array={array} />
       </div>
       <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} />
+      <DataManipulation5 array={array} />
     </div>
   );
 }
