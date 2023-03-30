@@ -1,34 +1,82 @@
 import React, { useState } from "react";
 import './App.css';
-import JsonLoader from "./components/JsonLoader";
 import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
 import DataManipulation from "./components/DataManipulation";
-import DataManipulation2 from "./components/DataManipulation2";
+import DataManipulation4 from "./components/DataManipulation4";
+
 
 function App() {
 
+  // 1. create empty array of objects
+  const initialArray = [];
+  for (let i = 0; i < 30; i++) {
+    initialArray.push({
+      id: i,
+      letter: '',
+      color: 'letter-box'
+    });
+  }
+  const [array, setArray] = useState(initialArray);
+  const [counter, setCounter] = useState(0);
 
-  const [letterArray, setLetterArray] = useState([]);
+  // 2. create function for adding letters
+  function addLetters(newLetter) {
+    setCounter(counter => counter + 1);
 
-  const handleSetLetterArray = (letter) => {
-    setLetterArray(letterArray => [...letterArray, letter]);
+    const newArray = array.map((i, index) => {
+      if (counter === index) {
+        return { id: i.id, letter: newLetter, color: i.color };
+      } else {
+        return { id: i.id, letter: i.letter, color: i.color };
+      }
+    });
+    setArray(newArray);
+  }
+
+  // 3. Create function for deleting letters
+  const deleteLetters = () => {
+    setCounter(newCounter => newCounter - 1);
+
+    const newArray = array.map((i, index) => {
+      if (counter - 1 === index) {
+        return { id: i.id, letter: '', color: 'letter-box' };
+      } else {
+        return { id: i.id, letter: i.letter, color: i.color };
+      }
+    });
+    setArray(newArray);
   };
 
-  const [firstWord, setFirstWord] = useState([]);
-
-  const handleSetFirstWord = () => {
-    setFirstWord(letterArray.slice(0, 5));
+  // 4. Create function for changing button colors
+  const changeColor = (indexButton) => {
+    const newArray = array.map(i => {
+      if (i.color === 'letter-box' && indexButton === i.id) {
+        return { id: i.id, letter: i.letter, color: 'letter-box-yellow' };
+      } else if (i.color === 'letter-box-yellow' && indexButton === i.id) {
+        return { id: i.id, letter: i.letter, color: 'letter-box-green' };
+      } else if (i.color === 'letter-box-green' && indexButton === i.id) {
+        return { id: i.id, letter: i.letter, color: 'letter-box' };
+      } else {
+        return { id: i.id, letter: i.letter, color: i.color };
+      }
+      ;
+    });
+    setArray(newArray);
   };
+
+  // 5. Create function for 
+
+
+  // RENDER
 
   return (
     <div className="App">
       <div className="interface">
-        <Letters letterArray={letterArray} />
-        <DataManipulation firstWord={firstWord} />
+        <Letters array={array} changeColor={changeColor} />
+        <DataManipulation4 array={array} />
       </div>
-      <Keyboard handleSetLetterArray={handleSetLetterArray} handleSetFirstWord={handleSetFirstWord} />
-      <DataManipulation2 />
+      <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} />
     </div>
   );
 }

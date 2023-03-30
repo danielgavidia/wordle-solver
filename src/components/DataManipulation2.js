@@ -29,7 +29,7 @@ export default function DataManipulation2() {
 
 
     // console
-    console.log(wordArray2);
+    // console.log(wordArray2);
 
 
     // return (
