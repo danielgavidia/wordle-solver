@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import data from './data.json';
+import data1 from './data1.json';
+import Plot from 'react-plotly.js';
 
 export default function DataManipulation4({ array }) {
 
-    const data1 = Object.values(data);
-    const wordArray = data1.map(word => word.toUpperCase());
+    const data1Final = data1.map(item => item.score);
+    console.log(data1Final);
+
+    const dataFinal = Object.values(data);
+    const wordArray = dataFinal.map(word => word.toUpperCase());
 
     function filterFunction(array, wordArray, positionArray, positionWordArray) {
         if (array[positionArray].color === 'letter-box') {
@@ -71,8 +76,37 @@ export default function DataManipulation4({ array }) {
         }
     };
 
+    // Create Plot
+
+    console.log(a5);
+
+    const trace1 = {
+        type: 'bar',
+        x: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        y: a5,
+        orientation: 'h',
+        name: "static plot",
+        mode: "markers+lines",
+        marker: {
+            size: [12, 15, 36]
+        }
+    };
+
+    const layout = {
+        title: 'Static Demo',
+        width: 600,
+        height: 400
+    };
+
+    const config = {
+        staticPlot: true
+    };
+
 
     return (
-        <div className='wordArray'>{itemsList().slice(1, 10)}</div>
+        <>
+            <Plot data={[trace1]} layout={layout} config={config} />
+            <div className='wordArray'>{itemsList().slice(1, 10)}</div>
+        </>
     );
 }
