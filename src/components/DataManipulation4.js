@@ -1,30 +1,24 @@
-import React, { useState } from 'react';
-import data from './data.json';
+import React from 'react';
 import data1 from './data1.json';
 import Plot from 'react-plotly.js';
 
-export default function DataManipulation4({ array }) {
+export default function DataManipulation4({ array, counter }) {
 
-    const data1Final = data1.map(item => item.score);
-    console.log(data1Final);
-
-    const dataFinal = Object.values(data);
-    const wordArray = dataFinal.map(word => word.toUpperCase());
-
+    // filter array
     function filterFunction(array, wordArray, positionArray, positionWordArray) {
         if (array[positionArray].color === 'letter-box') {
-            let a = wordArray.filter(word => !word.includes(array[positionArray].letter));
+            let a = wordArray.filter(item => !item.word.includes(array[positionArray].letter));
             return a;
         } else if (array[positionArray].color === 'letter-box-yellow') {
-            let a = wordArray.filter(word => word.includes(array[positionArray].letter));
+            let a = wordArray.filter(item => item.word.includes(array[positionArray].letter));
             return a;
         } else {
-            let a = wordArray.filter(word => word[positionWordArray].includes(array[positionArray].letter));
+            let a = wordArray.filter(item => item.word[positionWordArray].includes(array[positionArray].letter));
             return a;
         }
     }
 
-    const a1 = filterFunction(array, wordArray, 0, 0);
+    const a1 = filterFunction(array, data1, 0, 0);
     const a2 = filterFunction(array, a1, 1, 1);
     const a3 = filterFunction(array, a2, 2, 2);
     const a4 = filterFunction(array, a3, 3, 3);
@@ -60,42 +54,45 @@ export default function DataManipulation4({ array }) {
     const a29 = filterFunction(array, a28, 28, 3);
     const a30 = filterFunction(array, a29, 29, 4);
 
+    const arrayArrays = [
+        a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
+        a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25,
+        a26, a27, a28, a29, a30
+    ];
+
     const itemsList = () => {
-        if (a6.length === 0) {
-            return a5.map((word) => <div className='word'>{word}</div>);
-        } else if (a11.length === 0) {
-            return a10.map((word) => <div className='word'>{word}</div>);
-        } else if (a16.length === 0) {
-            return a15.map((word) => <div className='word'>{word}</div>);
-        } else if (a21.length === 0) {
-            return a20.map((word) => <div className='word'>{word}</div>);
-        } else if (a26.length === 0) {
-            return a25.map((word) => <div className='word'>{word}</div>);
+        if (counter === 0) {
+            return data1;
         } else {
-            return a30.map((word) => <div className='word'>{word}</div>);
+            return arrayArrays[counter - 1];
         }
     };
 
-    // Create Plot
 
-    console.log(a5);
+    // create plot
+    const wordsFinal = itemsList().map(item => item.word);
+    const scoresFinal = itemsList().map(item => item.score);
 
     const trace1 = {
         type: 'bar',
-        x: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        y: a5,
+        x: scoresFinal.slice(0, 10),
+        y: wordsFinal.slice(0, 10),
+        text: scoresFinal.slice(0, 10),
         orientation: 'h',
         name: "static plot",
-        mode: "markers+lines",
-        marker: {
-            size: [12, 15, 36]
-        }
     };
 
     const layout = {
-        title: 'Static Demo',
-        width: 600,
-        height: 400
+        margin: {
+            l: 100,
+            r: 100,
+            b: 10,
+            t: 10,
+            pad: 4
+        },
+        xaxis: {
+            visible: false
+        }
     };
 
     const config = {
@@ -106,7 +103,6 @@ export default function DataManipulation4({ array }) {
     return (
         <>
             <Plot data={[trace1]} layout={layout} config={config} />
-            <div className='wordArray'>{itemsList().slice(1, 10)}</div>
         </>
     );
 }

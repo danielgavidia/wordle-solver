@@ -75,7 +75,7 @@ function App() {
     <div className="App">
       <div className="interface">
         <Letters array={array} changeColor={changeColor} />
-        <DataManipulation4 array={array} />
+        <DataManipulation4 array={array} counter={counter} />
       </div>
       <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} />
       <DataManipulation5 array={array} />
