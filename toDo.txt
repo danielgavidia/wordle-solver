@@ -1,11 +1,10 @@
 To do tomorrow: Clean up UI:
-1. Sort letters by score
-2. Round numbers to 2 dec places
-3. Change fonts for entire interface
-4. Add title
-5. Make divs fit better together
-6. Work on color scheme
-7. Remove Enter key
+2. Change keyboard size
+3. Make all divs adjust on size and fit better
+5. Make bar chart divs same width regardless of array size
+6. Change letter box to have darker gray default
+7. Add more space between words and bars in horizontal bar chart
+8. Make buttons animate on click (for both keyboard and interface)
 
 Friday
 1. Create scraper for 12,000 words
