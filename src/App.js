@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import './App.css';
 import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
-import BarChart from "./components/BarChart";
+import BarChartPossible from "./components/BarChartPossible";
 import NavBar from "./components/NavBar";
+import BarChartStrategic from "./components/BarChartStrategic";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
     const newArray = array.map((i, index) => {
       if (counter === index) {
-        return { id: i.id, letter: newLetter, color: i.color };
+        return { id: i.id, letter: newLetter, color: 'letter-box-gray' };
       } else {
         return { id: i.id, letter: i.letter, color: i.color };
       }
@@ -51,12 +52,12 @@ function App() {
   // 4. Create function for changing button colors
   const changeColor = (indexButton) => {
     const newArray = array.map(i => {
-      if (i.color === 'letter-box' && indexButton === i.id) {
+      if (i.color === 'letter-box-gray' && indexButton === i.id) {
         return { id: i.id, letter: i.letter, color: 'letter-box-yellow' };
       } else if (i.color === 'letter-box-yellow' && indexButton === i.id) {
         return { id: i.id, letter: i.letter, color: 'letter-box-green' };
       } else if (i.color === 'letter-box-green' && indexButton === i.id) {
-        return { id: i.id, letter: i.letter, color: 'letter-box' };
+        return { id: i.id, letter: i.letter, color: 'letter-box-gray' };
       } else {
         return { id: i.id, letter: i.letter, color: i.color };
       }
@@ -74,8 +75,9 @@ function App() {
     <div className="App">
       <NavBar />
       <div className="interface">
+        <BarChartPossible array={array} counter={counter} />
         <Letters array={array} changeColor={changeColor} />
-        <BarChart array={array} counter={counter} />
+        <BarChartStrategic array={array} counter={counter} />
       </div>
       <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} />
     </div>

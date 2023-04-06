@@ -2,11 +2,11 @@ import React from 'react';
 import data from './data.json';
 import Plot from 'react-plotly.js';
 
-export default function DataManipulation4({ array, counter }) {
+export default function BarChartPossible({ array, counter }) {
 
     // filter array
     function filterFunction(array, wordArray, positionArray, positionWordArray) {
-        if (array[positionArray].color === 'letter-box') {
+        if (array[positionArray].color === 'letter-box-gray') {
             let a = wordArray.filter(item => !item.word.includes(array[positionArray].letter));
             return a;
         } else if (array[positionArray].color === 'letter-box-yellow') {
@@ -72,6 +72,8 @@ export default function DataManipulation4({ array, counter }) {
     // create plot
     const wordsFinal = itemsList().map(item => item.word);
     const scoresFinal = itemsList().map(item => item.score);
+    console.log(wordsFinal);
+
 
     const trace1 = {
         type: 'bar',
@@ -87,10 +89,7 @@ export default function DataManipulation4({ array, counter }) {
 
     const layout = {
         autosize: true,
-        height: 400,
         margin: {
-            l: 100,
-            r: 100,
             b: 10,
             t: 10,
             pad: 4
@@ -110,10 +109,21 @@ export default function DataManipulation4({ array, counter }) {
         staticPlot: true
     };
 
+    const plotFinal = () => {
+        if (wordsFinal.length != 0) {
+            return <Plot
+                data={[trace1]}
+                layout={layout}
+                config={config}
+                className='interface1'
+            />;
+        }
+    };
+
 
     return (
         <>
-            <Plot data={[trace1]} layout={layout} config={config} />
+            {plotFinal()}
         </>
     );
 }

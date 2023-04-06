@@ -1,9 +1,7 @@
 To do tomorrow: Clean up UI:
-2. Change keyboard size
 3. Make all divs adjust on size and fit better
 5. Make bar chart divs same width regardless of array size
 6. Change letter box to have darker gray default
-7. Add more space between words and bars in horizontal bar chart
 8. Make buttons animate on click (for both keyboard and interface)
 
 Friday

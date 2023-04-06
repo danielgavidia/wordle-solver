@@ -4,6 +4,7 @@
 body {
   margin: 0;
   background-color: black;
+  max-width: 100%;
 }
 
 body > #root > div {
@@ -28,18 +29,26 @@ body > #root > div {
 }
 
 .interface {
-  display: grid;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  grid-template-columns: 400px 480px;
-  padding-top: 80px;
-  height: 400px
+  height: 400px;
 }
 
-.letter-box-container {
+.interface1 {
+  flex: 1;
+}
+
+.interface2 {
+  flex: 1;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(5, 65px);
-  grid-template-rows: repeat(6, 65px);
+  grid-template-rows: repeat(6, 70px);
+}
+
+.interface3 {
+  flex: 1;
 }
 
 .letter-box {
@@ -52,6 +61,18 @@ body > #root > div {
   margin: 4px 4px 4px 4px;
   font-family: 'Libre Franklin', sans-serif;
   border: 2px solid rgba(118, 117, 117, 0.6);
+}
+
+.letter-box-gray {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  color: white;
+  align-items: center;
+  background-color: rgb(70, 70, 70);
+  margin: 4px 4px 4px 4px;
+  font-family: 'Libre Franklin', sans-serif;
+  border: 2px solid rgb(70, 70, 70);
 }
 
 .letter-box-yellow {
