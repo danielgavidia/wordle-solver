@@ -1,61 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&family=Roboto+Slab:wght@800&display=swap');
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
 body > #root > div {
-  height: 100vh;
+  margin: 0px;
 }
 
 .App {
-  background-color: white;
+  background-color: black;
+  margin: 0px;
+  text-align: center;
 }
 
-.wordle-title {
+.nav-bar {
   color: white;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Slab', serif;
+  border-bottom: 1px solid #81838499;
+  height: 70px;
 }
 
 .interface {
   display: grid;
   justify-content: center;
-  grid-template-columns: 480px 480px;
+  grid-template-columns: 400px 480px;
+  padding-top: 80px;
+  height: 400px
 }
 
 .letter-box-container {
   justify-content: center;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 80px 80px 80px 80px 80px 80px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  grid-template-columns: repeat(5, 65px);
+  grid-template-rows: repeat(6, 65px);
 }
 
 .letter-box {
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 35px;
   color: white;
   align-items: center;
-  background-color: gray;
-  margin: 3px 3px 3px 3px;
+  background-color: black;
+  margin: 4px 4px 4px 4px;
+  font-family: 'Libre Franklin', sans-serif;
+  border: 2px solid rgba(118, 117, 117, 0.6);
 }
 
 .letter-box-yellow {
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 35px;
   color: white;
   align-items: center;
-  background-color: darkgoldenrod;
-  margin: 3px 3px 3px 3px;
+  background-color: #B49E42;
+  margin: 4px 4px 4px 4px;
+  font-family: 'Libre Franklin', sans-serif;
+  border: 2px solid #B49E42;
 }
 
 .letter-box-green {
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 35px;
   color: white;
   align-items: center;
-  background-color: darkgreen;
-  margin: 3px 3px 3px 3px;
+  background-color: #588D52;
+  margin: 4px 4px 4px 4px;
+  font-family: 'Libre Franklin', sans-serif;
+  border: 2px solid #588D52;
 }
 
 .keyboard-container1 {
-  margin-top: 40px;
+  margin-top: 20px;
   justify-content: center;
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
@@ -72,33 +96,16 @@ body > #root > div {
   margin-top: 5px;
   justify-content: center;
   display: grid;
-  grid-template-columns: 100px 50px 50px 50px 50px 50px 50px 50px 100px;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 100px;
 }
 
 .keyboard-letter {
   color: white;
-  background-color: gray;
-  height: 80px;
+  background-color: #818384;
+  height: 60px;
   margin: 3px 3px 3px 3px;
   border: none;
   border-radius: 5px;
-}
-
-.wordArray {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.wordArray > div {
-  flex: 1;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: solid gray 2px;
-  border-radius: 5px;
-  width: 100%;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 20px;
 }

@@ -29,7 +29,6 @@ export default function Keyboard({ addLetters, deleteLetters }) {
                 <button className="keyboard-letter" onClick={() => addLetters('L')}>L</button>
             </div >
             <div className="keyboard-container3">
-                <button className="keyboard-letter" onClick={() => addLetters('Z')}>ENTER</button>
                 <button className="keyboard-letter" onClick={() => addLetters('Z')}>Z</button>
                 <button className="keyboard-letter" onClick={() => addLetters('X')}>X</button>
                 <button className="keyboard-letter" onClick={() => addLetters('C')}>C</button>

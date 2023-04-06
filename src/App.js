@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import './App.css';
 import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
-import DataManipulation from "./components/DataManipulation";
-import DataManipulation4 from "./components/DataManipulation4";
-import DataManipulation5 from "./components/DataManipulation5";
+import BarChart from "./components/BarChart";
+import NavBar from "./components/NavBar";
 
 
 function App() {
@@ -73,12 +72,12 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <div className="interface">
         <Letters array={array} changeColor={changeColor} />
-        <DataManipulation4 array={array} counter={counter} />
+        <BarChart array={array} counter={counter} />
       </div>
       <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} />
-      <DataManipulation5 array={array} />
     </div>
   );
 }

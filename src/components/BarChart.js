@@ -1,5 +1,5 @@
 import React from 'react';
-import data1 from './data1.json';
+import data from './data.json';
 import Plot from 'react-plotly.js';
 
 export default function DataManipulation4({ array, counter }) {
@@ -18,7 +18,7 @@ export default function DataManipulation4({ array, counter }) {
         }
     }
 
-    const a1 = filterFunction(array, data1, 0, 0);
+    const a1 = filterFunction(array, data, 0, 0);
     const a2 = filterFunction(array, a1, 1, 1);
     const a3 = filterFunction(array, a2, 2, 2);
     const a4 = filterFunction(array, a3, 3, 3);
@@ -62,7 +62,7 @@ export default function DataManipulation4({ array, counter }) {
 
     const itemsList = () => {
         if (counter === 0) {
-            return data1;
+            return data;
         } else {
             return arrayArrays[counter - 1];
         }
@@ -75,14 +75,19 @@ export default function DataManipulation4({ array, counter }) {
 
     const trace1 = {
         type: 'bar',
-        x: scoresFinal.slice(0, 10),
-        y: wordsFinal.slice(0, 10),
-        text: scoresFinal.slice(0, 10),
+        x: scoresFinal.slice(-10),
+        y: wordsFinal.slice(-10),
+        text: scoresFinal.slice(-10),
         orientation: 'h',
         name: "static plot",
+        marker: {
+            color: "white"
+        },
     };
 
     const layout = {
+        autosize: true,
+        height: 400,
         margin: {
             l: 100,
             r: 100,
@@ -92,7 +97,13 @@ export default function DataManipulation4({ array, counter }) {
         },
         xaxis: {
             visible: false
-        }
+        },
+        font: {
+            family: 'Libre Franklin, sans-serif',
+            color: 'white'
+        },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black"
     };
 
     const config = {
