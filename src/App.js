@@ -9,6 +9,8 @@ import BarChartStrategic from "./components/BarChartStrategic";
 
 function App() {
 
+
+
   // 1. create empty array of objects
   const initialArray = [];
   for (let i = 0; i < 30; i++) {
@@ -37,7 +39,9 @@ function App() {
 
   // 3. Create function for deleting letters
   const deleteLetters = () => {
-    setCounter(newCounter => newCounter - 1);
+    if (counter > 0) {
+      setCounter(newCounter => newCounter - 1);
+    }
 
     const newArray = array.map((i, index) => {
       if (counter - 1 === index) {
@@ -65,9 +69,6 @@ function App() {
     });
     setArray(newArray);
   };
-
-  // 5. Create function for 
-
 
   // RENDER
 

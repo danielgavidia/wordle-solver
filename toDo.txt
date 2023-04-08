@@ -1,18 +1,16 @@
-To do tomorrow: Clean up UI:
-3. Make all divs adjust on size and fit better
-5. Make bar chart divs same width regardless of array size
-6. Change letter box to have darker gray default
-8. Make buttons animate on click (for both keyboard and interface)
+Completed tasks
+0. Fix chart disappearing when array is 0
+2. Add button animation
 
 Friday
-1. Create scraper for 12,000 words
-2. Add new words to project
-
-Weekend
-1. Test tool and do finishing touches
-2. Clean up code
+1. Fix chart functionality (if number of dissimilar letters reaches certain threshold, show words that contain those letters)
+4. Add word count bar
+5. Add instructions
 
 Next Week
+1. Fix CSS
+3. Add keyboard functionality
+
 1. Showcase to Jake
 2. Get feedback
 3. Upload online

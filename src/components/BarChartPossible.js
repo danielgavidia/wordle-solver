@@ -60,9 +60,19 @@ export default function BarChartPossible({ array, counter }) {
         a26, a27, a28, a29, a30
     ];
 
+
+
+    // itemsList
+
     const itemsList = () => {
         if (counter === 0) {
             return data;
+        } else if (arrayArrays[counter - 1].length === 0) {
+            let newArrayArrays = arrayArrays.filter(arr => arr.length > 0);
+            let shortestArray = newArrayArrays.reduce(function (a, b) {
+                return a.length <= b.length ? a : b;
+            });
+            return shortestArray;
         } else {
             return arrayArrays[counter - 1];
         }
@@ -109,21 +119,15 @@ export default function BarChartPossible({ array, counter }) {
         staticPlot: true
     };
 
-    const plotFinal = () => {
-        if (wordsFinal.length != 0) {
-            return <Plot
+
+    return (
+        <>
+            <Plot
                 data={[trace1]}
                 layout={layout}
                 config={config}
                 className='interface1'
-            />;
-        }
-    };
-
-
-    return (
-        <>
-            {plotFinal()}
+            />
         </>
     );
 }

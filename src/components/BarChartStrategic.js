@@ -5,8 +5,8 @@ import Plot from 'react-plotly.js';
 export default function BarChartStrategic({ array, counter }) {
 
     // filter array
-    function filterFunction(array, wordArray, positionArray) {
-        let a = wordArray.filter(item => !item.word.includes(array[positionArray].letter));
+    function filterFunction(arr, wordArray, positionArray) {
+        let a = wordArray.filter(item => !item.word.includes(arr[positionArray].letter));
         return a;
     }
 
@@ -52,20 +52,84 @@ export default function BarChartStrategic({ array, counter }) {
         a26, a27, a28, a29, a30
     ];
 
+    //function for finding common letters
+
+    function getEveryLetter(word) {
+        let a = [];
+        for (let i = 0; i < word.length; i++) {
+            a.push(word[i]);
+        }
+        return a;
+    }
+
+    function strategicArray(array, largerArray) {
+
+        const wordArray = array.map(item => item.word);
+
+        const letterArray = [];
+
+        for (let i = 0; i < wordArray.length; i++) {
+            letterArray.push(getEveryLetter(wordArray[i]));
+        }
+
+        let flatLetterArray = [].concat(...letterArray);
+        let flatLetterArraySet = [... new Set(flatLetterArray)];
+
+        // return flatLetterArraySet;
+
+        const strategicLetterArray = [];
+
+        for (let i = 0; i < wordArray.length; i++) {
+            for (let j = 0; j < flatLetterArraySet.length; j++) {
+                if (wordArray[i].includes(flatLetterArraySet[j]) === false) {
+                    strategicLetterArray.push(flatLetterArraySet[j]);
+                }
+            }
+        }
+
+        const strategicLetterArraySet = [... new Set(strategicLetterArray)];
+        // return strategicLetterArraySet;
+
+        const a = largerArray.map(item => item.word);
+
+        let b = a.filter(item => item.includes(strategicLetterArraySet[0]));
+
+        return b;
+
+    }
+
+    // itemsList
+
     const itemsList = () => {
         if (counter === 0) {
             return data;
+        } else if (counter != 0 && arrayArrays[counter - 1].length === 0) {
+            let newArrayArrays = arrayArrays.filter(arr => arr.length > 0);
+            let shortestArray = newArrayArrays.reduce(function (a, b) {
+                return a.length <= b.length ? a : b;
+            });
+            return shortestArray;
         } else {
             return arrayArrays[counter - 1];
         }
     };
 
+    // const testArray = [
+    //     { word: 'scale' },
+    //     { word: 'scali' },
+    //     { word: 'scalo' }
+    // ];
+
+    // const testLargerArray = [
+    //     { word: 'hello' },
+    //     { word: 'helio' }
+    // ];
 
     // create plot
     const wordsFinal = itemsList().map(item => item.word);
     const scoresFinal = itemsList().map(item => item.score);
-    console.log(wordsFinal);
 
+    // console.log(wordsFinal);
 
     const trace1 = {
         type: 'bar',
@@ -101,21 +165,15 @@ export default function BarChartStrategic({ array, counter }) {
         staticPlot: true
     };
 
-    const plotFinal = () => {
-        if (wordsFinal.length != 0) {
-            return <Plot
+
+    return (
+        <>
+            <Plot
                 data={[trace1]}
                 layout={layout}
                 config={config}
                 className='interface3'
-            />;
-        }
-    };
-
-
-    return (
-        <>
-            {plotFinal()}
+            />
         </>
     );
 }
