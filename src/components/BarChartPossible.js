@@ -1,54 +1,69 @@
 import React, { useState } from 'react';
-import Plot from 'react-plotly.js';
+import { Chart as ChartJS } from 'chart.js/auto';
+import { Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+ChartJS.register(ChartDataLabels);
 
 export default function BarChartPossible({ jsonData }) {
 
     const wordsFinal = jsonData.map(item => item.word);
     const scoresFinal = jsonData.map(item => item.score);
 
-    const trace1 = {
-        type: 'bar',
-        x: scoresFinal.slice(-10),
-        y: wordsFinal.slice(-10),
-        text: scoresFinal.slice(-10),
-        orientation: 'h',
-        name: "static plot",
-        marker: {
-            color: "white"
-        },
-    };
+    const state = {
+        labels: wordsFinal.slice(-5),
+        datasets: [
+            {
+                axis: 'y',
+                backgroundColor: 'rgba(255, 255, 255)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 1,
+                data: scoresFinal.slice(-5)
+            }
 
-    const layout = {
-        autosize: true,
-        margin: {
-            b: 10,
-            t: 10,
-            pad: 4
-        },
-        xaxis: {
-            visible: false
-        },
-        font: {
-            family: 'Libre Franklin, sans-serif',
-            color: 'white'
-        },
-        plot_bgcolor: "black",
-        paper_bgcolor: "black"
-    };
-
-    const config = {
-        staticPlot: true
+        ]
     };
 
 
     return (
-        <>
-            <Plot
-                data={[trace1]}
-                layout={layout}
-                config={config}
-                className='interface1'
+        <div className='barchart-possible'>
+            <Bar
+                data={state}
+                plugins={ChartDataLabels}
+                options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    indexAxis: 'y',
+                    scales: {
+                        y: {
+                            stacked: false,
+                            reverse: true,
+                            ticks: {
+                                color: 'white',
+                                font: {
+                                    family: "'Libre Franklin', sans-serif",
+                                    size: 14
+                                }
+                            }
+                        },
+                        x: {
+                            display: false
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'center',
+                            color: 'black',
+                            font: {
+                                size: '14px',
+                                family: "'Libre Franklin', sans-serif"
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }}
             />
-        </>
+        </div>
     );
 }

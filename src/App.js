@@ -3,11 +3,10 @@ import './App.css';
 import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
 import BarChartPossible from "./components/BarChartPossible";
-import NavBar from "./components/NavBar";
 import BarChartStrategic from "./components/BarChartStrategic";
+import NavBar from "./components/NavBar";
 import data from './components/data.json';
-import Recharts from "./components/Recharts";
-import ChartJS from './components/ChartJS';
+import WordCount from "./components/WordCount";
 
 function App() {
 
@@ -25,6 +24,7 @@ function App() {
   const [minCounter, setMinCounter] = useState(0);
   const [maxCounter, setMaxCounter] = useState(5);
   const [jsonData, setJsonData] = useState(data);
+  const [arrayStrategic, setArrayStrategic] = useState(data);
 
   // 2. create function for adding letters
   const addLetters = (newLetter) => {
@@ -40,7 +40,6 @@ function App() {
       });
       setArray(newArray);
     }
-
   };
 
   // 3. Create function for deleting letters
@@ -84,7 +83,6 @@ function App() {
       setMaxCounter(max => max + 5);
 
       let currentArray = array.slice(minCounter, maxCounter);
-      let dataCopy = [...jsonData];
 
       let greenLetters = [];
       for (let i = 0; i < currentArray.length; i++) {
@@ -93,35 +91,44 @@ function App() {
         }
       }
 
+      let dataCopy = [...jsonData];
       for (let i = 0; i < currentArray.length; i++) {
         if (currentArray[i].color === 'letter-box-gray' && !greenLetters.includes(currentArray[i].letter)) {
           dataCopy = dataCopy.filter(item => !item.word.includes(currentArray[i].letter));
         } else if (currentArray[i].color === 'letter-box-yellow') {
           dataCopy = dataCopy.filter(item => item.word.includes(currentArray[i].letter));
+          dataCopy = dataCopy.filter(item => !item.word[i].includes(currentArray[i].letter));
         } else if (currentArray[i].color === 'letter-box-green') {
           dataCopy = dataCopy.filter(item => item.word[i].includes(currentArray[i].letter));
         }
       }
       setJsonData(dataCopy);
-    }
+
+      let dataCopyStrategic = [...arrayStrategic];
+      for (let i = 0; i < currentArray.length; i++) {
+        dataCopyStrategic = dataCopyStrategic.filter(item => !item.word.includes(currentArray[i].letter));
+      }
+      setArrayStrategic(dataCopyStrategic);
+    };
   };
 
   // RENDER
   return (
     <div className="App">
       <NavBar />
-      <ChartJS />
-      <div className="word-count-container">
-        <Recharts jsonData={jsonData} />
-      </div>
       <div className="interface">
-        <BarChartPossible jsonData={jsonData} />
+        <div className="interface-left">
+          <BarChartPossible jsonData={jsonData} />
+          <div className="interface-left-bottom">
+            <BarChartStrategic jsonData={jsonData} arrayStrategic={arrayStrategic} />
+            <WordCount jsonData={jsonData} />
+          </div>
+        </div>
         <Letters array={array} changeColor={changeColor} />
-        <BarChartStrategic array={array} counter={counter} />
       </div>
       <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} resetMinMax={resetMinMax} />
-    </div>
+    </div >
   );
-}
+};
 
 export default App;

@@ -28,29 +28,65 @@ body > #root > div {
   height: 70px;
 }
 
-/* .word-count-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100px;
-}
-
 .word-count {
-flex: 1;
-} */
+  height: 100px
+}
 
 .interface {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  height: 400px;
 }
 
-.interface1 {
+.interface-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.barchart-possible {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100px;
+}
+
+.interface-left-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid white;
   flex: 1;
 }
 
-.interface2 {
+.strategic-words-container {
+  flex: 1;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+  border-right: 2px solid white;
+  align-items: center;
+  justify-content: center;
+}
+
+.strategic-words {
+  color: white;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.animated-numbers {
+  flex: 1;
+  color: white;
+  font-family: 'Libre Franklin', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.letters {
   flex: 1;
   justify-content: center;
   display: grid;
@@ -58,9 +94,6 @@ flex: 1;
   grid-template-rows: repeat(6, 70px);
 }
 
-.interface3 {
-  flex: 1;
-}
 
 /* Letter boxes */
 
