@@ -28,6 +28,17 @@ body > #root > div {
   height: 70px;
 }
 
+/* .word-count-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+}
+
+.word-count {
+flex: 1;
+} */
+
 .interface {
   display: flex;
   flex-direction: row;
@@ -130,7 +141,7 @@ body > #root > div {
   margin-top: 5px;
   justify-content: center;
   display: grid;
-  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 100px;
+  grid-template-columns: 100px 50px 50px 50px 50px 50px 50px 50px 100px;
 }
 
 .keyboard-letter {
