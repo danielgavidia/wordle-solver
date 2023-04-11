@@ -15,6 +15,8 @@ body > #root > div {
   background-color: black;
   margin: 0px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-bar {
@@ -25,7 +27,7 @@ body > #root > div {
   align-items: center;
   font-family: 'Roboto Slab', serif;
   border-bottom: 1px solid #81838499;
-  height: 70px;
+  height: 80px;
 }
 
 .word-count {
@@ -35,6 +37,10 @@ body > #root > div {
 .interface {
   display: flex;
   flex-direction: row;
+  flex: 4;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
 }
 
 .interface-left {

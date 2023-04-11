@@ -33,6 +33,8 @@ export default function BarChartStrategic({ jsonData, arrayStrategic }) {
             return jsonData;
         } else if (jsonData.length > 1 && jsonData.length < 10) {
             return filteredMasterData;
+        } else if (arrayStrategic.length === 0) {
+            return filteredMasterData;
         } else {
             return arrayStrategic;
         }

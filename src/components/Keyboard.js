@@ -1,7 +1,38 @@
 import React from 'react';
+import { useOnKeyPress } from './KeyPress';
 
 export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
 
+    useOnKeyPress(() => addLetters('Q'), 'q');
+    useOnKeyPress(() => addLetters('W'), 'w');
+    useOnKeyPress(() => addLetters('E'), 'e');
+    useOnKeyPress(() => addLetters('R'), 'r');
+    useOnKeyPress(() => addLetters('T'), 't');
+    useOnKeyPress(() => addLetters('Y'), 'y');
+    useOnKeyPress(() => addLetters('U'), 'u');
+    useOnKeyPress(() => addLetters('I'), 'i');
+    useOnKeyPress(() => addLetters('O'), 'o');
+    useOnKeyPress(() => addLetters('P'), 'p');
+
+    useOnKeyPress(() => addLetters('A'), 'a');
+    useOnKeyPress(() => addLetters('S'), 's');
+    useOnKeyPress(() => addLetters('D'), 'd');
+    useOnKeyPress(() => addLetters('F'), 'f');
+    useOnKeyPress(() => addLetters('G'), 'g');
+    useOnKeyPress(() => addLetters('H'), 'h');
+    useOnKeyPress(() => addLetters('J'), 'j');
+    useOnKeyPress(() => addLetters('K'), 'k');
+    useOnKeyPress(() => addLetters('L'), 'l');
+
+    useOnKeyPress(() => addLetters('Z'), 'z');
+    useOnKeyPress(() => addLetters('X'), 'x');
+    useOnKeyPress(() => addLetters('C'), 'c');
+    useOnKeyPress(() => addLetters('V'), 'v');
+    useOnKeyPress(() => addLetters('B'), 'b');
+    useOnKeyPress(() => addLetters('N'), 'n');
+    useOnKeyPress(() => addLetters('M'), 'm');
+    useOnKeyPress(() => resetMinMax(), 'Enter');
+    useOnKeyPress(() => deleteLetters(), 'Backspace');
 
     return (
         <>
@@ -16,7 +47,7 @@ export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
                 <button className="keyboard-letter" onClick={() => addLetters('I')}>I</button>
                 <button className="keyboard-letter" onClick={() => addLetters('O')}>O</button>
                 <button className="keyboard-letter" onClick={() => addLetters('P')}>P</button>
-            </div>
+            </div >
             <div className="keyboard-container2">
                 <button className="keyboard-letter" onClick={() => addLetters('A')}>A</button>
                 <button className="keyboard-letter" onClick={() => addLetters('S')}>S</button>

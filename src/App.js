@@ -7,6 +7,7 @@ import BarChartStrategic from "./components/BarChartStrategic";
 import NavBar from "./components/NavBar";
 import data from './components/data.json';
 import WordCount from "./components/WordCount";
+import { useOnKeyPress } from "./components/KeyPress";
 
 function App() {
 
@@ -41,6 +42,9 @@ function App() {
       setArray(newArray);
     }
   };
+
+
+
 
   // 3. Create function for deleting letters
   const deleteLetters = () => {
