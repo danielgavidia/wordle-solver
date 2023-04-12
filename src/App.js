@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import './App.css';
+import data from './components/data.json';
+
 import Letters from "./components/Letters";
 import Keyboard from "./components/Keyboard";
-import BarChartPossible from "./components/BarChartPossible";
-import BarChartStrategic from "./components/BarChartStrategic";
+import BarChart from "./components/BarChart";
+import StrategicWords from "./components/StrategicWords";
 import NavBar from "./components/NavBar";
-import data from './components/data.json';
 import WordCount from "./components/WordCount";
-import { useOnKeyPress } from "./components/KeyPress";
+
 
 function App() {
-
-  // 1. create empty array of objects
+  // 0. Initialize array
   const initialArray = [];
   for (let i = 0; i < 30; i++) {
     initialArray.push({
@@ -20,12 +20,15 @@ function App() {
       color: 'letter-box'
     });
   }
+
+  // 1. Set state
   const [array, setArray] = useState(initialArray);
   const [counter, setCounter] = useState(0);
   const [minCounter, setMinCounter] = useState(0);
   const [maxCounter, setMaxCounter] = useState(5);
   const [jsonData, setJsonData] = useState(data);
   const [arrayStrategic, setArrayStrategic] = useState(data);
+  const [modal, setModal] = useState(false);
 
   // 2. create function for adding letters
   const addLetters = (newLetter) => {
@@ -43,9 +46,6 @@ function App() {
     }
   };
 
-
-
-
   // 3. Create function for deleting letters
   const deleteLetters = () => {
     if (counter > minCounter) {
@@ -62,7 +62,7 @@ function App() {
     }
   };
 
-  // 4. Create function for changing button colors
+  // 4. Create function for changing letter colors
   const changeColor = (indexButton) => {
     if (indexButton >= minCounter) {
       const newArray = array.map(i => {
@@ -80,8 +80,8 @@ function App() {
     }
   };
 
-  // 5. Create function for setting new min and new max
-  const resetMinMax = () => {
+  // 5. Create function for submitting word
+  const submit = () => {
     if (counter === maxCounter) {
       setMinCounter(min => min + 5);
       setMaxCounter(max => max + 5);
@@ -113,24 +113,50 @@ function App() {
         dataCopyStrategic = dataCopyStrategic.filter(item => !item.word.includes(currentArray[i].letter));
       }
       setArrayStrategic(dataCopyStrategic);
-    };
+
+      //change array colors
+      const arrayUpdate = array.map(item => {
+        if (item.letter != '' && !item.color.includes('white')) {
+          return { id: item.id, letter: item.letter, color: item.color.concat('-white') };
+        } else {
+          return { id: item.id, letter: item.letter, color: item.color };
+        }
+      });
+      setArray(arrayUpdate);
+
+    }
+  };
+
+  // 6. Create function for resetting word / array
+  const resetSolver = () => {
+    setMinCounter(0);
+    setMaxCounter(5);
+    setCounter(0);
+    setArray(initialArray);
+    setJsonData(data);
+    setArrayStrategic(data);
   };
 
   // RENDER
   return (
     <div className="App">
-      <NavBar />
+      <NavBar modal={modal} setModal={setModal} />
       <div className="interface">
         <div className="interface-left">
-          <BarChartPossible jsonData={jsonData} />
+          <BarChart jsonData={jsonData} />
           <div className="interface-left-bottom">
-            <BarChartStrategic jsonData={jsonData} arrayStrategic={arrayStrategic} />
-            <WordCount jsonData={jsonData} />
+            <StrategicWords jsonData={jsonData} arrayStrategic={arrayStrategic} />
+            <WordCount jsonData={jsonData} modal={modal} />
           </div>
         </div>
         <Letters array={array} changeColor={changeColor} />
       </div>
-      <Keyboard addLetters={addLetters} deleteLetters={deleteLetters} resetMinMax={resetMinMax} />
+      <Keyboard
+        addLetters={addLetters}
+        deleteLetters={deleteLetters}
+        submit={submit}
+        resetSolver={resetSolver}
+      />
     </div >
   );
 };

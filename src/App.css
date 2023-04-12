@@ -23,12 +23,34 @@ body > #root > div {
   color: white;
   font-size: 35px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  position: relative;
   align-items: center;
   font-family: 'Roboto Slab', serif;
   border-bottom: 1px solid #81838499;
   height: 80px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
+
+.nav-bar-title {
+  flex: 1;
+  color: white;
+}
+
+.nav-bar-info {
+  flex: 0 1 auto;
+  background-color: black;
+  border: 1px solid black;
+  margin-left: auto;
+  height: 100%;
+  width: 5%;
+}
+
+.nav-bar-info:hover {
+  background-color: rgba(118, 117, 117, 0.6);
+}
+.nav-bar-info:active {transform: scale(0.9);}
 
 .word-count {
   height: 100px
@@ -52,13 +74,23 @@ body > #root > div {
 .barchart-possible {
   flex: 2;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  height: 100px;
+  height: 60%;
+  color: white;
+  align-items: center;
+  font-family: 'Libre Franklin', sans-serif;
+  padding-bottom: 2%;
+}
+
+.barchart-possible-title {
+  display: flex;
 }
 
 .interface-left-bottom {
   display: flex;
+  height: 40%;
+  padding-top: 2%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -66,14 +98,27 @@ body > #root > div {
   flex: 1;
 }
 
-.strategic-words-container {
+.strategic-words-container-container {
   flex: 1;
-  list-style-type: none;
+  height: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   border-right: 2px solid white;
   align-items: center;
   justify-content: center;
+  color: white;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.strategic-words-container {
+  flex: 1;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .strategic-words {
@@ -83,13 +128,22 @@ body > #root > div {
 
 .animated-numbers {
   flex: 1;
+  height: 100%;
   color: white;
   font-family: 'Libre Franklin', sans-serif;
-  display: flex;
-  justify-content: center;
+  font-size: 30px;
   align-items: center;
-  flex-direction: column;
-  flex-grow: 1;
+}
+
+.animated-numbers-title {
+  width: 100%;
+  height: 10%;
+}
+
+.animated-container {
+  align-items: center;
+  justify-content: center;
+  height: 90%;
 }
 
 .letters {
@@ -99,9 +153,6 @@ body > #root > div {
   grid-template-columns: repeat(5, 65px);
   grid-template-rows: repeat(6, 70px);
 }
-
-
-/* Letter boxes */
 
 .letter-box {
   display: flex;
@@ -115,7 +166,7 @@ body > #root > div {
   border: 2px solid rgba(118, 117, 117, 0.6);
 }
 
-.letter-box-gray {
+.letter-box-gray, .letter-box-gray-white {
   display: flex;
   justify-content: center;
   font-size: 35px;
@@ -127,7 +178,7 @@ body > #root > div {
   border: 2px solid rgb(70, 70, 70);
 }
 
-.letter-box-yellow {
+.letter-box-yellow, .letter-box-yellow-white {
   display: flex;
   justify-content: center;
   font-size: 35px;
@@ -139,7 +190,7 @@ body > #root > div {
   border: 2px solid #B49E42;
 }
 
-.letter-box-green {
+.letter-box-green, .letter-box-green-white {
   display: flex;
   justify-content: center;
   font-size: 35px;
@@ -153,14 +204,15 @@ body > #root > div {
 
 .letter-box-gray:hover {background-color: rgb(108, 107, 107)}
 .letter-box-gray:active {background-color: rgb(108, 107, 107); transform: scale(0.9);}
+.letter-box-gray-white {border: 3px solid white}
 
 .letter-box-yellow:hover {background-color: #b9a760}
 .letter-box-yellow:active {background-color: #b9a760; transform: scale(0.9);}
+.letter-box-yellow-white {border: 3px solid white}
 
 .letter-box-green:hover {background-color: #71a76b}
 .letter-box-green:active {background-color: #71a76b; transform: scale(0.9);}
-
-/* Keyboard containers */
+.letter-box-green-white {border: 3px solid white}
 
 .keyboard-container1 {
   margin-top: 20px;
@@ -183,6 +235,13 @@ body > #root > div {
   grid-template-columns: 100px 50px 50px 50px 50px 50px 50px 50px 100px;
 }
 
+.keyboard-container4 {
+  margin-top: 5px;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 600px;
+}
+
 .keyboard-letter {
   color: white;
   background-color: #818384;
@@ -192,6 +251,44 @@ body > #root > div {
   border-radius: 5px;
   font-family: 'Libre Franklin', sans-serif;
   font-size: 20px;
+}
+
+.keyboard-letter-submit {
+  color: white;
+  background-color: purple;
+  height: 60px;
+  margin: 3px 3px 3px 3px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 20px;
+}
+
+.keyboard-letter-submit:hover {
+  background-color: rgb(169, 110, 169);
+}
+.keyboard-letter-submit:active {
+  background-color: rgb(169, 110, 169);
+  transform: scale(0.9);
+}
+
+.keyboard-letter-reset {
+  color: white;
+  background-color: black;
+  height: 60px;
+  margin: 3px 3px 3px 3px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 20px;
+}
+
+.keyboard-letter-reset:hover {
+  background-color: blue;
+}
+.keyboard-letter-reset:active {
+  background-color: blue;
+  transform: scale(0.9);
 }
 
 .keyboard-letter:hover {

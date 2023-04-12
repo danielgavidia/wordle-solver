@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import dataMaster from './data.json';
 ChartJS.register(ChartDataLabels);
 
-export default function ChartJSJS({ jsonData }) {
+export default function BarChart({ jsonData }) {
+
+    const wordsFinal = jsonData.map(item => item.word);
+    const scoresFinal = jsonData.map(item => item.score);
+
     const state = {
-        labels: ['words remaining'],
+        labels: wordsFinal.slice(-10),
         datasets: [
             {
                 axis: 'y',
                 backgroundColor: 'rgba(255, 255, 255)',
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 1,
-                data: [jsonData.length]
+                data: scoresFinal.slice(-10)
             }
 
         ]
@@ -22,15 +25,19 @@ export default function ChartJSJS({ jsonData }) {
 
 
     return (
-        <div className='word-count'>
+        <div className='barchart-possible'>
+            <div className='barchart-possible-title'>top words remaining</div>
             <Bar
                 data={state}
                 plugins={ChartDataLabels}
                 options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
                     indexAxis: 'y',
                     scales: {
                         y: {
-                            stacked: true,
+                            stacked: false,
+                            reverse: true,
                             ticks: {
                                 color: 'white',
                                 font: {
@@ -43,13 +50,12 @@ export default function ChartJSJS({ jsonData }) {
                             display: false
                         }
                     },
-                    maintainAspectRatio: false,
                     plugins: {
                         datalabels: {
                             anchor: 'center',
                             color: 'black',
                             font: {
-                                size: '16px',
+                                size: '14px',
                                 family: "'Libre Franklin', sans-serif"
                             }
                         },

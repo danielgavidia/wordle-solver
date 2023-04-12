@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOnKeyPress } from './KeyPress';
 
-export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
+export default function Keyboard({ addLetters, deleteLetters, submit, resetSolver }) {
 
     useOnKeyPress(() => addLetters('Q'), 'q');
     useOnKeyPress(() => addLetters('W'), 'w');
@@ -13,6 +13,7 @@ export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
     useOnKeyPress(() => addLetters('I'), 'i');
     useOnKeyPress(() => addLetters('O'), 'o');
     useOnKeyPress(() => addLetters('P'), 'p');
+
 
     useOnKeyPress(() => addLetters('A'), 'a');
     useOnKeyPress(() => addLetters('S'), 's');
@@ -31,7 +32,7 @@ export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
     useOnKeyPress(() => addLetters('B'), 'b');
     useOnKeyPress(() => addLetters('N'), 'n');
     useOnKeyPress(() => addLetters('M'), 'm');
-    useOnKeyPress(() => resetMinMax(), 'Enter');
+    useOnKeyPress(() => submit(), 'Enter');
     useOnKeyPress(() => deleteLetters(), 'Backspace');
 
     return (
@@ -60,7 +61,7 @@ export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
                 <button className="keyboard-letter" onClick={() => addLetters('L')}>L</button>
             </div >
             <div className="keyboard-container3">
-                <button className="keyboard-letter" onClick={() => resetMinMax()}>ENTER</button>
+                <button className="keyboard-letter-submit" onClick={() => submit()}>SUBMIT</button>
                 <button className="keyboard-letter" onClick={() => addLetters('Z')}>Z</button>
                 <button className="keyboard-letter" onClick={() => addLetters('X')}>X</button>
                 <button className="keyboard-letter" onClick={() => addLetters('C')}>C</button>
@@ -70,6 +71,13 @@ export default function Keyboard({ addLetters, deleteLetters, resetMinMax }) {
                 <button className="keyboard-letter" onClick={() => addLetters('M')}>M</button>
                 <button className="keyboard-letter" onClick={() => deleteLetters()}>DELETE</button>
             </div >
+            <div className='keyboard-container4'>
+                <button
+                    className='keyboard-letter-reset'
+                    onClick={() => resetSolver()}
+                >
+                    Reset Solver </button>
+            </div>
         </>
 
     );

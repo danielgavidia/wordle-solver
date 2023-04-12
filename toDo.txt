@@ -1,5 +1,6 @@
 To do:
--Add reset buttons (for both words and entire array)
--Change array CSS when word has been submitted
--Add modals for instructions
--Fix CSS layout
+-Fix modal
+-Change button hover colors
+-Clean up code
+-Add falling letter animation
+-Do final upload on GitHub

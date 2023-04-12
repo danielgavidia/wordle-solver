@@ -1,7 +1,7 @@
 import React from 'react';
 import data from './data.json';
 
-export default function BarChartStrategic({ jsonData, arrayStrategic }) {
+export default function StrategicWords({ jsonData, arrayStrategic }) {
 
     let jsonDataWords = jsonData.map(item => item.word);
     let jsonDataLetters = [];
@@ -50,8 +50,9 @@ export default function BarChartStrategic({ jsonData, arrayStrategic }) {
     };
 
     return (
-        <>
+        <div className='strategic-words-container-container'>
+            suggested words
             <ul className='strategic-words-container'>{words()}</ul>
-        </>
+        </div>
     );
 }

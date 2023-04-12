@@ -1,15 +1,23 @@
 import React from 'react';
 import AnimatedNumbers from 'react-animated-numbers';
-import data from './data.json';
 
-export default function WordCount({ jsonData }) {
+export default function WordCount({ jsonData, modal }) {
+
+    const animated = () => {
+        if (modal === false) {
+            return (
+                <AnimatedNumbers
+                    includeComma
+                    animateToNumber={jsonData.length}
+                />
+            );
+        }
+    };
+
     return (
         <div className='animated-numbers'>
-            <AnimatedNumbers
-                animateToNumber={jsonData.length}
-            />
-            <br />
-            words remaining
+            <div className='animated-numbers-title' style={{ fontSize: '16px' }}>words remaining</div>
+            {animated()}
         </div>
     );
 }
