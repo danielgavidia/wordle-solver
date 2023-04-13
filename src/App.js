@@ -7,7 +7,7 @@ import Keyboard from "./components/Keyboard";
 import BarChart from "./components/BarChart";
 import StrategicWords from "./components/StrategicWords";
 import NavBar from "./components/NavBar";
-import WordCount from "./components/WordCount";
+import AnimatedNumber from "./components/AnimatedNumber";
 
 
 function App() {
@@ -146,7 +146,8 @@ function App() {
           <BarChart jsonData={jsonData} />
           <div className="interface-left-bottom">
             <StrategicWords jsonData={jsonData} arrayStrategic={arrayStrategic} />
-            <WordCount jsonData={jsonData} modal={modal} />
+            {/* <WordCount jsonData={jsonData} modal={modal} /> */}
+            <AnimatedNumber jsonData={jsonData} />
           </div>
         </div>
         <Letters array={array} changeColor={changeColor} />
