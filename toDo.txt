@@ -1,31 +1,6 @@
-Steps in completing Wordle Solver project:
-
-1. Add remaining functioning keys to keyboard - DONE
-2. Make sure app looks presentable with word list on the right of word input - DONE
-3. Clean up JSON string - DONE
-
-4. Figure out how to do word search with onClick event
-5. Change color of letter with multiple clicks
-6. Using new color value, look for potential word candidates
-
-
-
-Key setting process
-1. Press letter key in keyboard
-2. New Object created. It contains following keys: 1. letter name, 2. gray color
-3. Array of Objects get passed to Letters Component
-4. In each letterbox, Letters Component displays only the Object.letter prop
-5. By clicking on a letter, Object.color changes
-
-
-Next Steps
-1. Create iterations, make it so that you go on to the next word
-2. Create and show dissimilarity score
-3. Fix UI
-4. Start worrying about edge cases
-
-5. Add more words (you need all 12K, only have 2.5K)
-
-Tonight
--create iterations
--create new Python scraper
+To do:
+-Fix modal
+-Change button hover colors
+-Clean up code
+-Add falling letter animation
+-Do final upload on GitHub
